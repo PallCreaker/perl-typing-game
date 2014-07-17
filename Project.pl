@@ -4,6 +4,19 @@ use warnings;
 use utf8;
 binmode STDOUT, ':utf8';
 
+###難易度の選択
+print "難易度を設定できます。1:かんたん。２:ふつう。3:むずかしい。4:おに。\n [1/2/3/4]で入力してください。\n";
+my $rank_select;
+while($rank_select = <STDIN> ){
+    if ($rank_select !~ /^[1-4]/ ) {
+        print "[1/2/3/4]で入力してください。\n 1:かんたん。２:ふつう。3:むずかしい。4:おに。\n";
+    }else{
+        chomp($rank_select);
+        last;
+    }
+};
+
+####  base data
 my @problems = (
 ['orange','柑橘類','愛媛が生産一位','冬にこたつの上にある'],
 ['apple','赤い','あるパソコンのメーカー','スティーブ・ジョブズの設立の会社のロゴ'],
@@ -18,9 +31,12 @@ my @problems = (
 my $miss_count = 0;
 my $i = 1;
 my $question_count = @problems;
-my $alarm_time = 5;
+my %rank = (1 => '10', 2 => '5', 3 => '3', 4 => '1');
+my $alarm_time = $rank{$rank_select};
 
 
+
+### program
 print "\n英単語を当てるゲームです。\n\n英単語の語の順序がバラバラになっているので、それを正しく順番を直して入力してください。\n\nなお。間違えるとヒントも少しあります。\n\nそれでは10秒後にスタートします。", "\n";
 printf "%d秒以内に何か入力して下さい。\n", $alarm_time;
 sleep 10;
