@@ -95,5 +95,3 @@ foreach my $problem(@problems) {
 
 my $ans_rate = (($question_count - $miss_count) * 100) / $question_count;
 print "終了！\nあなたの正解率は？....${ans_rate}% です〜！","\n";
-print $question_count, "\n";
-print $miss_count;
